@@ -41,3 +41,18 @@ services:
           res.end('Auth service running');
         }).listen(3000,'0.0.0.0')
     path: /auth
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: myapp.local
+      paths:
+        - path: /
+          pathType: Prefix
+        - path: /api
+          pathType: Prefix
+        - path: /auth
+          pathType: Prefix
+  tls: []
