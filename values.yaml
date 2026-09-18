@@ -34,4 +34,4 @@ services:
 ingress:
   enabled: true
   className: "nginx"
-  host: "http://aa1f6ce2983534da7a8ea025e9a9b42b-728985017.ap-south-2.elb.amazonaws.com/"
+  host: http://aa1f6ce2983534da7a8ea025e9a9b42b-728985017.ap-south-2.elb.amazonaws.com
