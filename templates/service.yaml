@@ -6,13 +6,13 @@ metadata:
   labels:
     app: {{ $.Release.Name }}-{{ .name }}
 spec:
-  type: ClusterIP
+  selector:
+    app: {{ $.Release.Name }}-{{ .name }}
   ports:
     - port: 80
       targetPort: {{ .containerPort }}
       protocol: TCP
-  selector:
-    app: {{ $.Release.Name }}-{{ .name }}
+  type: ClusterIP
+
 ---
 {{- end }}
-

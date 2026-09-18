@@ -4,19 +4,34 @@ services:
     image: nginx:latest
     containerPort: 80
     path: /
+
   - name: api
     replicaCount: 1
     image: python:3.9-slim
     containerPort: 8000
+    command:
+      - python
+      - -m
+      - http.server
+      - "8000"
+      - --bind
+      - 0.0.0.0
     path: /api
+
   - name: auth
     replicaCount: 1
     image: node:18-slim
     containerPort: 3000
+    command:
+      - node
+      - -e
+      - |
+        require('http').createServer((req,res)=>{
+          res.end('Auth service running')
+        }).listen(3000,'0.0.0.0')
     path: /auth
 
 ingress:
   enabled: true
   className: "nginx"
   host: "myapp.local"
-

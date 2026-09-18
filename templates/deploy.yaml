@@ -20,11 +20,11 @@ spec:
           image: {{ .image }}
           ports:
             - containerPort: {{ .containerPort }}
-              protocol: TCP
+
           {{- if .command }}
-    command:
-      {{- toYaml .command | nindent 14 }}
-    {{- end }}
+          command:
+            {{- toYaml .command | nindent 12 }}
+          {{- end }}
+
 ---
 {{- end }}
-
