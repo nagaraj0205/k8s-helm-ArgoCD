@@ -1,0 +1,18 @@
+{{- range .Values.services }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Release.Name }}-{{ .name }}-svc
+  labels:
+    app: {{ $.Release.Name }}-{{ .name }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: {{ .containerPort }}
+      protocol: TCP
+  selector:
+    app: {{ $.Release.Name }}-{{ .name }}
+---
+{{- end }}
+

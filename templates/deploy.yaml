@@ -1,0 +1,26 @@
+{{- range .Values.services }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $.Release.Name }}-{{ .name }}-deploy
+  labels:
+    app: {{ $.Release.Name }}-{{ .name }}
+spec:
+  replicas: {{ .replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ $.Release.Name }}-{{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $.Release.Name }}-{{ .name }}
+    spec:
+      containers:
+        - name: {{ .name }}
+          image: {{ .image }}
+          ports:
+            - containerPort: {{ .containerPort }}
+              protocol: TCP
+---
+{{- end }}
+
