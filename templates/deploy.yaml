@@ -21,6 +21,10 @@ spec:
           ports:
             - containerPort: {{ .containerPort }}
               protocol: TCP
+          {{- if .command }}
+    command:
+      {{- toYaml .command | nindent 14 }}
+    {{- end }}
 ---
 {{- end }}
 
