@@ -1,7 +1,0 @@
-apiVersion: v2
-name: my-app
-description: A Helm chart to deploy 3 pods, a service, and an ingress
-type: application
-version: 0.1.0
-appVersion: "1.0.0"
-
